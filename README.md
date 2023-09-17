@@ -68,6 +68,6 @@ Copy xrick_021212_wii directory to Nintendo Wii device
     'exit'                                    : "HOME"
     'cycle through worlds'                    : "B"
     'toggle unlimited: lives, bombs, bullets' : "MINUS"
-    'toggle: no collision'                   : "PLUS"
+    'toggle: no collision'                    : "PLUS"
 
 
