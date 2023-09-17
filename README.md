@@ -1,6 +1,7 @@
 # XRick_Wii
 
 XRick is a reimplementation of classic Rick Dangerous game by BigOrno (bigorno@bigorno.net, http://www.bigorno.net/xrick)
+
 Nintendo Wii port: Bomblik
 
 Rick Dangerous is a platform game developed by Core Design for the Acorn Archimedes, Amiga, 
