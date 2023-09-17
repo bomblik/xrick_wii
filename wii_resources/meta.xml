@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+    <name>XRick (Rick Dangerous)</name>
+    <version>021212</version>
+        <release_date>2023051300</release_date>
+    <coder>BigOrno, Wii port: Bomblik</coder>
+    <short_description>Reimplementation of classic Rick Dangerous game</short_description>
+    <long_description>
+Use Wii Remote horizontally
+
+'left / up / right / down' : "DPAD"
+'fire' : "2"
+'fire bullet' : "2 + UP"
+'lay dynamite' : "2 + DOWN"
+'poke with stick' : "2 + (LEFT / RIGHT)"
+'exit' : "HOME"
+'cycle through worlds' : "B"
+'toggle unlimited: lives, bombs, bullets' : "MINUS"
+'toggle: no collision' : "PLUS"
+    </long_description>
+</app>

@@ -1,78 +1,73 @@
 # XRick_Wii
 
-BlockOut_II_PSP is a Sony Playstation Portable port of BlockOut II game by Jean-Luc PONS.
+XRick is a reimplementation of classic Rick Dangerous game by BigOrno (bigorno@bigorno.net)
 
-http://www.blockout.net/blockout2
+http://www.bigorno.net/xrick/
 
-BlockOut II is reimplementation of original 1989 puzzle video game, developed in Poland by
-Aleksander Ustaszewski and Mirosław Zabłocki and published by California Dreams for multiple
-platforms. Original BlockOut was first video game which transfered tetris from 2D into 3D.
+Rick Dangerous is a platform game developed by Core Design for the Acorn Archimedes, Amiga, 
+Atari ST, Amstrad CPC, ZX Spectrum, Commodore 64, and MS-DOS. The game was released in 1989 
+and published by MicroProse on the Firebird Software label in the UK, and on the MicroPlay 
+label in America. It was also published in Spain by Erbe Software. Later, it was released with 
+two other games, Stunt Car Racer and MicroProse Soccer, on the Commodore 64 Powerplay 64 cartridge. 
+The game was followed by a sequel, Rick Dangerous 2, in 1990. Loosely based on the Indiana Jones 
+film franchise, the game received mixed reviews from critics. 
 
-https://en.wikipedia.org/wiki/Blockout
+https://en.wikipedia.org/wiki/Rick_Dangerous
 
-This port is based on BlockOut II release 2.5
+This port is based on XRick release #021212
 
 ## Game screenshots
 
-Screenshots of different block sets
+Screenshots of different game worlds
 
 <p align="center">
-  <img src="Screenshots/flat_fun_screenshot.png" width="480"/>
-  <img src="Screenshots/out_of_control_screenshot.png" width="480"/>
-  <img src="Screenshots/3d_mania_screenshot.png" width="480"/>
+  <img src="Screenshots/world1.png" width="1345"/>
+  <img src="Screenshots/world2.png" width="1345"/>
+  <img src="Screenshots/world3.png" width="1345"/>
+  <img src="Screenshots/world4.png" width="1345"/>
 </p>
 
 ## Binary installation
 
-https://github.com/bomblik/BlockOut_II_PSP/releases
+https://github.com/bomblik/xrick_wii/releases
 
-Copy BlockOut_II directory to Sony PSP device
-(e.g. to ms0:/psp/game directory on Memory Stick).
+Copy xrick_021212_wii directory to Nintendo Wii device
+(to 'apps' subdirectory on SD card or USB drive).
 
 ## Source installation
 
 ### Compilation
 
-In order to compile BlockOut_II_PSP, please install psptoolchain
-and set development environment.
+In order to compile XRick_Wii, please install devkitpro toolchain
+and set up development environment.
 
 To compile project invoke
 
-    cd ImageLib/src
-    make -f Makefile.psp
-
-    cd ../../BlockOut
-    make -f Makefile.psp
+    make -f Makefile.wii
 
 To prepare data for installation invoke
 
-    make -f Makefile.psp release
+    make -f Makefile.wii release
 
-That would create all required data in BlockOut_II directory
+That would create all required data in xrick_021212_wii directory
 
 ### Installation
 
-Copy BlockOut_II directory to Sony PSP device
-(e.g. to ms0:/psp/game directory on Memory Stick).
+Copy xrick_021212_wii directory to Nintendo Wii device
+(to 'apps' subdirectory on SD card or USB drive).
 
 ## Key mappings
 
-    CROSS                    - confirm / drop block
-    RIGHT TRIGGER            - cancel / exit game
+    Use Wii Remote horizontally
 
-    D-PAD                    - move block / select character (hall of fame)
-
-    SQUARE                   - rotate block around X axis counterclockwise
-    SQUARE   + LEFT TRIGGER  - rotate block around X axis clockwise
-    TRIANGLE                 - rotate block around Y axis counterclockwise
-    TRIANGLE + LEFT TRIGGER  - rotate block around Y axis clockwise
-    CIRCLE                   - rotate block around Z axis counterclockwise
-    CIRCLE   + LEFT TRIGGER  - rotate block around Z axis clockwise
-
-    START                    - pause / resume game
-
-## Online score database
-
-You can play against / compare your score to online score database, using wifi connection.
+    'left / up / right / down'                : "DPAD"
+    'fire'                                    : "2"
+    'fire bullet'                             : "2 + UP"
+    'lay dynamite'                            : "2 + DOWN"
+    'poke with stick'                         : "2 + (LEFT / RIGHT)"
+    'exit'                                    : "HOME"
+    'cycle through worlds'                    : "B"
+    'toggle unlimited: lives, bombs, bullets' : "MINUS"
+     'toggle: no collision'                   : "PLUS"
 
 

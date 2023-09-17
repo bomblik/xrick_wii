@@ -22,7 +22,11 @@
 #undef GFXPC
 
 /* joystick support */
+#if defined PLATFORM_WII
+#define ENABLE_JOYSTICK
+#else
 #undef ENABLE_JOYSTICK
+#endif
 
 /* sound support */
 #define ENABLE_SOUND

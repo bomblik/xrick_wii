@@ -25,6 +25,7 @@
 
 #include "control.h"
 #include "draw.h"
+#include "maps.h"
 
 #define SYSJOY_RANGE 3280
 
@@ -197,11 +198,73 @@ processEvent()
     }
     break;
   case SDL_JOYBUTTONDOWN:
-    SETBIT(control_status, CONTROL_FIRE);
+    {
+#ifdef PLATFORM_WII
+      enum WII_REMOTE_BUTTONS {
+        WPAD_BUTTON_A,
+        WPAD_BUTTON_B,
+        WPAD_BUTTON_1,
+        WPAD_BUTTON_2,
+        WPAD_BUTTON_MINUS,
+        WPAD_BUTTON_PLUS,
+        WPAD_BUTTON_HOME
+      };
+
+      if (event.jbutton.button == WPAD_BUTTON_B) {
+        sysarg_args_map++;
+        if (sysarg_args_map >= MAP_NBR_MAPS - 1) {
+          sysarg_args_map = 0;
+        }
+        SETBIT(control_status, CONTROL_END);
+        control_last = CONTROL_END;
+      }
+      else if (event.jbutton.button == WPAD_BUTTON_MINUS) {
+        game_toggleCheat(1);
+      }
+      else if (event.jbutton.button == WPAD_BUTTON_PLUS) {
+        game_toggleCheat(2);
+      }
+      else if (event.jbutton.button == WPAD_BUTTON_HOME) {
+        SETBIT(control_status, CONTROL_EXIT);
+        control_last = CONTROL_EXIT;
+      }
+      else {
+        SETBIT(control_status, CONTROL_FIRE);
+      }
+#else
+      SETBIT(control_status, CONTROL_FIRE);
+#endif
+    }
     break;
   case SDL_JOYBUTTONUP:
-    CLRBIT(control_status, CONTROL_FIRE);
+    {
+      CLRBIT(control_status, CONTROL_FIRE);
+    }
     break;
+#ifdef PLATFORM_WII
+  case SDL_JOYHATMOTION:
+    if ( event.jhat.value == SDL_HAT_CENTERED ) {
+      CLRBIT(control_status, CONTROL_LEFT);
+      CLRBIT(control_status, CONTROL_RIGHT);
+      CLRBIT(control_status, CONTROL_UP);
+      CLRBIT(control_status, CONTROL_DOWN);
+    }
+    if ( event.jhat.value & SDL_HAT_LEFT ) {
+      SETBIT(control_status, CONTROL_DOWN);
+      CLRBIT(control_status, CONTROL_UP);
+    } else if ( event.jhat.value & SDL_HAT_RIGHT) {
+      SETBIT(control_status, CONTROL_UP);
+      CLRBIT(control_status, CONTROL_DOWN);
+    }
+    if ( event.jhat.value & SDL_HAT_UP) {
+      SETBIT(control_status, CONTROL_LEFT);
+      CLRBIT(control_status, CONTROL_RIGHT);
+    } else if ( event.jhat.value & SDL_HAT_DOWN) {
+      SETBIT(control_status, CONTROL_RIGHT);
+      CLRBIT(control_status, CONTROL_LEFT);
+    }
+    break;
+#endif
 #endif
   default:
     break;

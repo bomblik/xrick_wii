@@ -299,7 +299,17 @@ frame(void)
 
 		case INIT_GAME:
 			init();
+#ifdef PLATFORM_WII
+			if (control_status == CONTROL_END) {
+				game_state = INTRO_MAP;
+				control_status = 0;
+			} else {
+				game_state = INTRO_MAIN;
+			}
+
+#else
 			game_state = INTRO_MAIN;
+#endif
 			break;
 
 
@@ -618,7 +628,11 @@ static void
 play0(void)
 {
   if (control_status & CONTROL_END) {  /* request to end the game */
+#ifdef PLATFORM_WII
+    game_state = INIT_GAME;
+#else
     game_state = GAMEOVER;
+#endif
     return;
   }
 

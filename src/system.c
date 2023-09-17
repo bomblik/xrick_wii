@@ -123,7 +123,7 @@ sys_shutdown(void)
 	syssnd_shutdown();
 #endif
 #ifdef ENABLE_JOYSTICK
-	sysjoy_shutdown();
+	//sysjoy_shutdown();
 #endif
 	sysvid_shutdown();
 }

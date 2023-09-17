@@ -1,0 +1,48 @@
+# Xrick Nintendo Wii Makefile
+
+ifeq ($(strip $(DEVKITPPC)),)
+$(error "Please set DEVKITPPC in your environment. export DEVKITPPC=<path to>devkitPPC")
+endif
+
+include $(DEVKITPPC)/wii_rules
+
+TARGET = xrick
+VERSION = 021212
+SOURCES = $(wildcard src/*.c)
+OBJECTS = $(patsubst %.c, %.o, $(SOURCES))
+INCLUDES = include
+RELEASE_DIR = $(TARGET)_$(VERSION)_wii
+
+CFLAGS	= -I $(INCLUDES) -I $(DEVKITPRO)/portlibs/ppc/include -I $(DEVKITPRO)/portlibs/wii/include  \
+-I $(DEVKITPRO)/portlibs/wii/include/SDL $(shell $(DEVKITPRO)/portlibs/wii/bin/sdl-config --cflags) \
+-Wall -W -O2 -D_GNU_SOURCE=1 -D_REENTRANT -DPLATFORM_WII
+
+CXXFLAGS = $(CFLAGS)
+
+LDFLAGS	= -L $(DEVKITPRO)/portlibs/ppc/lib -L $(DEVKITPRO)/portlibs/wii/lib -L $(DEVKITPPC)/lib \
+-L $(DEVKITPPC)/powerpc-eabi/lib/ -L $(DEVKITPRO)/libogc/lib/wii \
+-lz $(shell $(DEVKITPRO)/portlibs/wii/bin/sdl-config --libs)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $(TARGET)
+	elf2dol xrick boot.dol
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+	rm -f boot.dol
+	rm -rf $(RELEASE_DIR)
+
+release:
+	@rm -rf $(RELEASE_DIR)
+	@echo Creating release directory $(RELEASE_DIR)
+	@mkdir $(RELEASE_DIR)
+	@echo Copying files...
+	@cp -r boot.dol $(RELEASE_DIR)
+	@cp -r data.zip $(RELEASE_DIR)
+	@cp -r wii_resources/* $(RELEASE_DIR)
+	@echo Done
