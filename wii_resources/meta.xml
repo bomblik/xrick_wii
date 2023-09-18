@@ -17,5 +17,7 @@ Use Wii Remote horizontally
 'cycle through worlds' : "B"
 'toggle unlimited: lives, bombs, bullets' : "MINUS"
 'toggle: no collision' : "PLUS"
+
+Link : https://github.com/bomblik/xrick_wii/releases
     </long_description>
 </app>
